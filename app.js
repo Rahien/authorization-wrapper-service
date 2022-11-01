@@ -109,14 +109,19 @@ function ensureSparqlParams(req) {
     case 'GET':
       ensureGETSparqlParams(req);
       break;
-    default:
-      throw new Error('Not correct SPARQL request parameters');
+    default: {
+      const err = new Error(
+        'Not a correctly formed request for SPARQL queries.'
+      );
+      err.status = 401;
+      throw err;
+    }
   }
   if (!req.get('Mu-Session-Id')) {
     const err = new Error(
       'The required "mu-session-id" header could not be found. This is usually attached to the request by the mu-identifier.'
     );
-    err.status = 400;
+    err.status = 401;
     throw err;
   }
 }
