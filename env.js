@@ -1,7 +1,22 @@
+import envvar from 'env-var';
 import namespace from '@rdfjs/namespace';
 import * as N3 from 'n3';
 
-//TODO Use library env-var to parse environment variables if necessary.
+export const DATABASE_HOST = envvar
+  .get('DATABASE_HOST')
+  .example('http://database:8890')
+  .default('http://database:8890')
+  .asUrlString();
+
+export const PROXY_LOGLEVEL = envvar
+  .get('PROXY_LOGLEVEL')
+  .default('silent')
+  .asEnum(['debug', 'info', 'warn', 'error', 'silent']);
+
+export const LOGLEVEL = envvar
+  .get('LOGLEVEL')
+  .default('silent')
+  .asEnum(['error', 'silent']);
 
 const PREFIXES = {
   rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',

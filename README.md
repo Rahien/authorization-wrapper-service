@@ -117,7 +117,11 @@ After processing authorization using the configuration, it seems this client doe
 
 ## Configuration
 
-There is nothing to be configured yet. Come back later for more customization.
+These are environment variables that can be used to configure this service. Supply a value for them using the `environment` keyword in the `docker-compose.yml` file.
+
+* `DATABASE_HOST`: *(optional, default: "http://database:8890")* hostname (with protocol and portnumber) of the database service. Since this service acts as a proxy only on the `/sparql` path, requests are always forwarded to that same path on the database host.
+* `LOGLEVEL`: *(optional, default: "silent")* level of logging of request processing and authorization checking. Possible values are: `['error', 'silent']`.
+* `PROXY_LOGLEVEL`: *(optional, default: "silent")* level of logging for the proxying middleware. Possible values are: `['debug', 'info', 'warn', 'error', 'silent']`.
 
 ## Model
 

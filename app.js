@@ -1,6 +1,7 @@
 import { app } from 'mu';
 import bodyParser from 'body-parser';
 import { NAMESPACES as ns } from './env.js';
+import * as env from './env.js';
 import { v4 as uuid } from 'uuid';
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { isAuthorized } from './config/filter.js';
@@ -31,7 +32,8 @@ app.use(async function (req, res, next) {
 app.use(
   '/sparql',
   createProxyMiddleware({
-    target: 'http://virtuoso:8890',
+    target: env.DATABASE_HOST,
+    logLevel: env.PROXY_LOGLEVEL,
     onProxyReq: function (proxyReq, req) {
       const body = req.body;
       if (!body) return;
@@ -54,6 +56,7 @@ app.use(
 // For some reason the 'next' parameter is unused and eslint notifies us, but when removed, Express does not use this middleware anymore.
 /* eslint-disable no-unused-vars */
 app.use(async (err, req, res, next) => {
+  if (env.LOGLEVEL === 'error') console.error(err);
   res.status(err.status || 500);
   const errorStore = errorToStore(err);
   const errorJsonld = await storeToJsonLd(
