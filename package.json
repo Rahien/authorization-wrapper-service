@@ -8,7 +8,7 @@
     "env-var": "7.3.0",
     "http-proxy": "^1.18.1",
     "http-proxy-middleware": "^2.0.6",
-    "jsonld": "^6.0.0",
+    "jsonld": "^1.7.0",
     "n3": "^1.16.2",
     "rdf-string-ttl": "^1.2.0",
     "sparqljson-parse": "^2.1.1",

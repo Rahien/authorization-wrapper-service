@@ -5,7 +5,8 @@ import * as env from './env';
 import { v4 as uuid } from 'uuid';
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { isAuthorized } from './config/filter';
-import { Buffer } from 'node:buffer';
+//Use `node:buffer` on more modern NodeJS versions
+import { Buffer } from 'buffer';
 import * as jsonld from 'jsonld';
 import * as con from './contexts';
 import * as N3 from 'n3';
