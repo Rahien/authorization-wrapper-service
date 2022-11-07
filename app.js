@@ -1,13 +1,14 @@
 import { app } from 'mu';
 import bodyParser from 'body-parser';
-import { NAMESPACES as ns } from './env.js';
-import * as env from './env.js';
+import { NAMESPACES as ns } from './env';
+import * as env from './env';
 import { v4 as uuid } from 'uuid';
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
-import { isAuthorized } from './config/filter.js';
-import { Buffer } from 'node:buffer';
+import { isAuthorized } from './config/filter';
+//Use `node:buffer` on more modern NodeJS versions
+import { Buffer } from 'buffer';
 import * as jsonld from 'jsonld';
-import * as con from './contexts.js';
+import * as con from './contexts';
 import * as N3 from 'n3';
 const { namedNode, literal, blankNode } = N3.DataFactory;
 
