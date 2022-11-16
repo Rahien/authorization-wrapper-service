@@ -149,8 +149,6 @@ function ensurePOSTSparqlParams(req) {
       throw err;
     }
   } else if (/application\/sparql-query/.test(contentType)) {
-    console.log('This should be a raw body');
-    console.log(req.body.toString());
     if (req.body.toString().trim() === '') {
       const err = new Error(
         'When querying with POST and Content-Type "application/sparql-query", you must supply the query as the body.'
