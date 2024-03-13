@@ -47,7 +47,7 @@ app.use(
         fixRequestBody(proxyReq, req);
       }
     },
-  })
+  }),
 );
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ app.use(async (err, req, res, next) => {
   const errorJsonld = await storeToJsonLd(
     errorStore,
     con.ErrorResponseContext,
-    con.ErrorResponseFrame
+    con.ErrorResponseFrame,
   );
   res.json(errorJsonld);
 });
@@ -86,7 +86,7 @@ async function ensureAuthorized(session) {
   let isAuth = await isAuthorized(session.value);
   if (!isAuth) {
     const err = new Error(
-      'This session is not authorized to execute SPARQL queries.'
+      'This session is not authorized to execute SPARQL queries.',
     );
     err.status = 403;
     throw err;
@@ -115,7 +115,7 @@ function ensureSparqlParams(req) {
       break;
     default: {
       const err = new Error(
-        'Not a correctly formed request for SPARQL queries.'
+        'Not a correctly formed request for SPARQL queries.',
       );
       err.status = 401;
       throw err;
@@ -123,7 +123,7 @@ function ensureSparqlParams(req) {
   }
   if (!req.get('Mu-Session-Id')) {
     const err = new Error(
-      'The required "mu-session-id" header could not be found. This is usually attached to the request by the mu-identifier.'
+      'The required "mu-session-id" header could not be found. This is usually attached to the request by the mu-identifier.',
     );
     err.status = 401;
     throw err;
@@ -143,7 +143,7 @@ function ensurePOSTSparqlParams(req) {
   if (/application\/x-www-form-urlencoded/.test(contentType)) {
     if (!req.body?.query) {
       const err = new Error(
-        'When querying with POST and Content-Type "application/x-www-form-urlencoded", you must supply the query as a form parameter.'
+        'When querying with POST and Content-Type "application/x-www-form-urlencoded", you must supply the query as a form parameter.',
       );
       err.status = 400;
       throw err;
@@ -151,14 +151,14 @@ function ensurePOSTSparqlParams(req) {
   } else if (/application\/sparql-query/.test(contentType)) {
     if (req.body.toString().trim() === '') {
       const err = new Error(
-        'When querying with POST and Content-Type "application/sparql-query", you must supply the query as the body.'
+        'When querying with POST and Content-Type "application/sparql-query", you must supply the query as the body.',
       );
       err.status = 400;
       throw err;
     }
   } else {
     const err = new Error(
-      'Content-Type not valid, only "application/x-www-form-urlencoded" or "application/sparql-query" are accepted'
+      'Content-Type not valid, only "application/x-www-form-urlencoded" or "application/sparql-query" are accepted',
     );
     err.status = 400;
     throw err;
@@ -176,7 +176,7 @@ function ensurePOSTSparqlParams(req) {
 function ensureGETSparqlParams(req) {
   if (!req.query.query) {
     throw new Error(
-      'When executing a GET request, the query should be supplied as a URL query parameter.'
+      'When executing a GET request, the query should be supplied as a URL query parameter.',
     );
   }
   if (Object.keys(req.body).length !== 0) {
