@@ -5,7 +5,7 @@
   "description": "Wrapper for executing SPARQL queries on a mu-semtech stack with some extra authorization checks.",
   "dependencies": {
     "@lblod/mu-auth-sudo": "^0.6.0",
-    "env-var": "7.3.0",
+    "env-var": "^7.3.0",
     "http-proxy": "^1.18.1",
     "http-proxy-middleware": "^2.0.6",
     "jsonld": "^8.3.2",
