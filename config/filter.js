@@ -23,7 +23,7 @@ export async function isAuthorized(sessionUri) {
           dct:created ?created ;
           muAccount:account ?account .
       }
-    }
+    } LIMIT 2
   `;
   const response = await mas.querySudo(checkSessionQuery);
   // We want exactly one result, only one session should exist at a certain time.
