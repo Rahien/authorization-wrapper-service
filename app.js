@@ -6,7 +6,7 @@ import { router } from './config/router';
 app.use(async function (req, _res, next) {
   try {
     const session = req.get('Mu-Session-Id');
-    await ensureAuthorized(session);
+    await ensureAuthorized(session, req);
     next();
   } catch (err) {
     next(err);
@@ -23,8 +23,8 @@ app.use(
 );
 
 
-async function ensureAuthorized(session) {
-  let isAuth = await isAuthorized(session);
+async function ensureAuthorized(session, req) {
+  let isAuth = await isAuthorized(session, req);
   if (!isAuth) {
     const err = new Error(
       'This session is not authorized to execute this request',

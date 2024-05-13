@@ -1,7 +1,7 @@
 import * as mu from 'mu';
 import * as mas from '@lblod/mu-auth-sudo';
 
-export async function isAuthorized(sessionUri) {
+export async function isAuthorized(sessionUri, _req) {
   const checkSessionQuery = `
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
